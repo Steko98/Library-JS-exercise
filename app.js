@@ -24,6 +24,16 @@ function Book(title, author, year, language, pages, read) {
 
 const book1 = new Book("Teo Te Ching", "Lao Tzu", 2020, "Croatian", 96, true);
 myLibrary.push(book1)
+const book2 = new Book("Zhuangzi: The Complete Writings", "Zhuangzi", 2020, "English", 336, false);
+myLibrary.push(book2)
+const book3 = new Book("Svijet progonjen demonima", "Carl Sagan", 2013, "Croatian", 376, true)
+myLibrary.push(book3)
+const book4 = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", 1995, "English", 224, true)
+myLibrary.push(book4)
+const book5 = new Book("Opća psihologija komunikacije", "Friedemann Schulz von Thun", 2006, "Croatian", 235, false)
+myLibrary.push(book5)
+const book6 = new Book("Sapiens: A Brief History of Humankind", "Yuval Noah Harari", 2011, "English", 512, false)
+myLibrary.push(book6)
 
 function createCard(book) {
     let newCard = document.createElement("div")
@@ -31,6 +41,8 @@ function createCard(book) {
 
     let infoBox = document.createElement("div")
     infoBox.classList.add("info")
+    let btnBox = document.createElement("div")
+    btnBox.classList.add("button-box")
 
     for (let key in book) {
         if (key === "_id") {
@@ -45,14 +57,13 @@ function createCard(book) {
         } else if (key === "read") {
             let element = document.createElement("div")
             if (book[key] === true) {
-                element.classList.add("read")
                 element.setAttribute("id", "read")
                 element.textContent = "Read"
             } else {
                 element.setAttribute("id", "unread")
                 element.textContent = "Unread"
             }
-            infoBox.appendChild(element)
+            btnBox.appendChild(element)
         } else {
             let element = document.createElement("p");
             element.setAttribute("id", key)
@@ -62,16 +73,10 @@ function createCard(book) {
         }
     }
 
-    let btnBox = document.createElement("div")
-    btnBox.classList.add("button-box")
-    let readBtn = document.createElement("button")
-    readBtn.setAttribute("id", "read-btn")
-    readBtn.textContent = "Check";
     let removeBtn = document.createElement("button")
     removeBtn.setAttribute("id", "remove-btn")
     removeBtn.textContent = "Remove"
 
-    btnBox.appendChild(readBtn)
     btnBox.appendChild(removeBtn)
 
     newCard.appendChild(infoBox)
