@@ -9,23 +9,45 @@
 <body>
     <div class="container">
         <div class="sidebar">
+            <h1>Add a book to your library here:</h1>
+            <form id="myForm">
+                <label for="title">Title:</label>
+                <input type="text" name="title" id="title" required>
 
+                <label for="author">Author:</label>
+                <input type="text" name="author" id="author" required>
+
+                <label for="year">Year:</label>
+                <input type="number" name="year" id="year">
+
+                <label for="language">Language:</label>
+                <input type="text" name="language" id="language" list="languageList">
+                <datalist id="languageList">
+                    <option value="English">English</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="French">French</option>
+                    <option value="Russian">Russian</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="Croatian">Croatian</option>
+                    <option value="Portuguese">Portuguese</option>
+                    <option value="German">German</option>
+                    <option value="Italian">Italian</option>
+                </datalist>
+
+                <label for="pages">Pages</label>
+                <input type="number" name="pages" id="pages">
+
+                <fieldset>
+                    <label for="read">I read this:</label>
+                    <input type="radio" id="read" name="read" value="true" checked>
+                    <label for="unread">I didn't read this:</label>
+                    <input type="radio" id="unread" name="read" value="false">                    
+                </fieldset>
+
+                <button type="submit" id="submit">Add book</button>
+            </form>
         </div>
         <div id="library">
-            <div class="card">
-                <div class="info">
-                    <h1>Tao Te Ching</h1>
-                    <h2>Lao Tzu</h2>
-                    <p class="item">2023</p>
-                    <p class="item">Croatian</p>
-                    <p class="item">96</p>
-                    <div id="read">Read</div>
-                </div>
-                <div class="button-box">
-                    <button id="read-btn">Check</button>
-                    <button id="remove-btn">Remove</button>
-                </div>
-            </div>
         </div>
     </div>
     <script src="./app.js"></script>

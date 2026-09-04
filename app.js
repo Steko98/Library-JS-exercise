@@ -1,6 +1,13 @@
 const library = document.getElementById("library")
+const submitBtn = document.getElementById("submit")
 
 let myLibrary = [];
+
+function startUp(library) {
+    for (let book in library) {
+        createCard(library[book]);
+    }
+}
 
 function Book(title, author, year, language, pages, read) {
     if (!new.target) {
@@ -15,6 +22,9 @@ function Book(title, author, year, language, pages, read) {
     this.read = read;
 }
 
+const book1 = new Book("Teo Te Ching", "Lao Tzu", 2020, "Croatian", 96, true);
+myLibrary.push(book1)
+
 function createCard(book) {
     let newCard = document.createElement("div")
     newCard.classList.add("card");
@@ -24,15 +34,15 @@ function createCard(book) {
 
     for (let key in book) {
         if (key === "_id") {
-        } else if (key === "title"){
+        } else if (key === "title") {
             let element = document.createElement("h1")
             element.textContent = `${book[key]}`
             infoBox.appendChild(element)
-        } else if(key === "author"){
+        } else if (key === "author") {
             let element = document.createElement("h2")
             element.textContent = `${book[key]}`
             infoBox.appendChild(element)
-        } else if (key === "read"){
+        } else if (key === "read") {
             let element = document.createElement("div")
             if (book[key] === true) {
                 element.classList.add("read")
@@ -73,4 +83,28 @@ function createCard(book) {
 function addNewBook(title, author, year, language, pages, read) {
     let book = new Book(title, author, year, language, pages, read);
     myLibrary.push(book);
+    createCard(book)
 }
+
+const myForm = document.getElementById("myForm")
+
+myForm.addEventListener("submit", function(){
+    event.preventDefault();
+    let readBool;
+    if (this.elements.read.value === "true") {
+        readBool = true;
+    } else {
+        readBool = false;
+    }
+    addNewBook(
+        this.elements.title.value,
+        this.elements.author.value,
+        this.elements.year.value,
+        this.elements.language.value,
+        this.elements.pages.value,
+        readBool
+    )
+    myForm.reset();
+})
+
+startUp(myLibrary);
