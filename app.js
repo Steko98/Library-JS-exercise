@@ -38,6 +38,7 @@ myLibrary.push(book6)
 function createCard(book) {
     let newCard = document.createElement("div")
     newCard.classList.add("card");
+    newCard.setAttribute("id", `${book._id}`)
 
     let infoBox = document.createElement("div")
     infoBox.classList.add("info")
@@ -55,7 +56,7 @@ function createCard(book) {
             element.textContent = `${book[key]}`
             infoBox.appendChild(element)
         } else if (key === "read") {
-            let element = document.createElement("div")
+            let element = document.createElement("button")
             if (book[key] === true) {
                 element.setAttribute("id", "read")
                 element.textContent = "Read"
@@ -63,6 +64,20 @@ function createCard(book) {
                 element.setAttribute("id", "unread")
                 element.textContent = "Unread"
             }
+            element.addEventListener("click", function(){
+                let state = element.getAttribute("id")
+                if (state === "read") {
+                    element.removeAttribute("id")
+                    element.setAttribute("id", "unread");
+                    element.textContent = "Unread"
+                    book[key] = false;
+                } else {
+                    element.removeAttribute("id")
+                    element.setAttribute("id", "read");
+                    element.textContent = "Read"
+                    book[key] = true;
+                }
+            })
             btnBox.appendChild(element)
         } else {
             let element = document.createElement("p");
@@ -76,6 +91,14 @@ function createCard(book) {
     let removeBtn = document.createElement("button")
     removeBtn.setAttribute("id", "remove-btn")
     removeBtn.textContent = "Remove"
+    removeBtn.addEventListener("click", function(){
+        library.removeChild(newCard)
+        let id = newCard.getAttribute("id")
+        let bookIndex = myLibrary.findIndex(item => item._id === id);
+        if (bookIndex !== -1) {
+            myLibrary.splice(bookIndex, 1)
+        }
+    })
 
     btnBox.appendChild(removeBtn)
 
