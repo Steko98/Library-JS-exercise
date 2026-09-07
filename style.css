@@ -64,17 +64,10 @@ fieldset label {
     margin-top: 72px;
     padding: 12px 24px;
     font-size: 1.5rem;
-    font-weight: bold;
     color: white;
     background-color: #2185D5;
-    transition: 0.5s ease;
 }
 
-#submit:hover {
-    cursor: pointer;
-    transform: translateY(-5px);
-
-}
 
 #library {
     background-color: #3A4750;
@@ -135,6 +128,16 @@ fieldset label {
 button {
     border: none;
     border-radius: 5px;
+    transition: 0.3s ease;
+
+    font-weight: bold;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+
+button:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 }
 
 #read,
@@ -150,13 +153,7 @@ button {
     justify-content: center;
     align-self: center;
 
-
     border-radius: 5px;
-}
-
-#read,
-#unread:hover {
-    cursor: pointer;
 }
 
 #read {
